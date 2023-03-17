@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const postsApi = require('./server/tweets');
+const postsApi = require('./server/posts');
 const loginApi = require('./server/login');
 
 app.use('/', express.static(__dirname + '/public'));

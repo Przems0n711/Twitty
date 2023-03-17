@@ -1,33 +1,28 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
-    name: {
+const messageSchema = new mongoose.Schema({
+    title: {
         type: String,
         required: true,
     },
-    surname: {
+   sender: {
+        type: String,
+        required: true,
+   },
+    receiver: {
         type: String,
         required: true,
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    password: {
+    content: {
         type: String,
         required: true,
     },
-    admin: {
+    read: {
         type: Boolean,
-        default: false,
-    },
-    date: {
-        type: Date,
         required: true,
     }
 });
 
-const User = mongoose.model('users', userSchema);
+const Message = mongoose.model('messages', messageSchema);
 
-module.exports = User;
+module.exports = Message;
