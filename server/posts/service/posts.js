@@ -1,4 +1,3 @@
-
 const posts = async (req, res) => {
     const resposne = {
         success: true,

@@ -11,14 +11,13 @@ const addUser = async (req, res) => {
 
     try {
         const
-            name = data.name,
-            surname = data.surname,
+            username = data.username,
             email = data.email,
             password = data.password,
             admin = data.admin;
             date = new Date();
 
-        await new User({name, surname, email, password, admin, date}).save();
+        await new User({username, email, password, admin, date}).save();
         // await User.create(data);
 
         return res.status(200).json({success: true});

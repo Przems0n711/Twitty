@@ -5,12 +5,12 @@ const posts = async (req, res) => {
         posts: [
             {
                 id: 1,
-                category: 'Matematyka',
+                category: '#essa',
                 text: 'Lorem ipsum 1'
             },
             {
                 id: 2,
-                category: 'WF',
+                category: '#uwu',
                 text: 'Lorem ipsum 2'
             }
         ],

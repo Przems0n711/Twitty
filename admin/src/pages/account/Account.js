@@ -1,11 +1,10 @@
 import React from 'react';
-import './Dashboard.scss';
+import './Account.scss';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios'
 
-const Dashboard = () => {
-    const nameRef = React.createRef();
-    const surnameRef = React.createRef();
+const Account = () => {
+    const usernameRef = React.createRef();
     const emailRef = React.createRef();
     const passwordRef = React.createRef();
 
@@ -21,36 +20,33 @@ const Dashboard = () => {
     const addEmailHandler = async (e) => {
         e.preventDefault();
         
-        const name = nameRef.current.value,
-              surname = surnameRef.current.value,
+        const username = usernameRef.current.value,
               email = emailRef.current.value,
               password = passwordRef.current.value;
 
-        if (name.length < 5 ||
-            surname.length < 5 ||
+        if (username.length < 5 ||
             password.length < 5 ||
             _isIncorrectEmail(email)) {
             return;
             }
 
 
-        const data = { name, surname, email, password };
+        const data = { username, email, password };
 
         const response = await axios.post('/admin/login', data, {})
 
         if (response.status.success) {
-            navigate('/dashboard')
+            navigate('/account')
         }
         console.log(data);
     };
 
     return (
-        <div className='Dashboard-container'>
+        <div className='Account-container'>
             <h1>Welcome to Twitty!</h1>
 
             <form>
-                <input ref={nameRef} type='text' placeholder='Name' />
-                <input ref={surnameRef} type='text' placeholder='Surname' />
+                <input ref={usernameRef} type='text' placeholder='Username' />
                 <input ref={emailRef} type='text' placeholder='Email' />
                 <input ref={passwordRef} type='text' placeholder='Password' />
                 <button onClick={addEmailHandler}>Add</button>
@@ -59,4 +55,4 @@ const Dashboard = () => {
     )
 };
 
-export default Dashboard;
+export default Account;
