@@ -1,96 +1,52 @@
 const User = require('../../models/user');
+
 const addUser = async (req, res) => {
-    const data = req.body;
-
-
-    // TODO make this work
-    // console.log('notyet')
-    // const decoded = jwt.verify(req.token, 'admin4123')
-    // console.log('decoded')
-    // if (!decoded.admin) return res.status(403).json({success: false});
-
     try {
-        const
-            username = data.username,
-            email = data.email,
-            password = data.password,
-            admin = data.admin;
-            date = new Date();
-
-        await new User({username, email, password, admin, date}).save();
-        // await User.create(data);
-
-        return res.status(200).json({success: true});
-
+        const user = await User.create(req.body);
+        return res.status(200).json({ success: true });
     } catch (error) {
-        console.log(error)
-        return res.status(500).json({success: false});
+        console.log(error);
+        return res.status(500).json({ success: false });
     }
-}
+};
 
 const getUsers = async (req, res) => {
     try {
-        // const token = req.query.token;
-        // const decoded = jwt.verify(token, 'admin4123');
-        //
-        // if (!decoded.admin) return res.status(403).json({success: false});
-
-        const users = await User.find().sort({date: -1});
-
-
-        const response = {
-            success: true,
-            users,
-        };
-
-        return res.status(200).json(response);
-    } catch (error) {
-        console.log(error)
-        return res.status(500).json({success: false});
-    }
-}
-
-const removeUser = async (req, res) => {
-    const id = req.body.id;
-
-    try {
-        const user1 = await User.findById(id);
-        if (user1.admin) return res.status(403).json({success: false});
-
-        await User.findByIdAndDelete(id);
-
-        const response = {
-            success: true,
-        }
-
+        const users = await User.find().sort({ date: -1 });
+        const response = { success: true, users };
         return res.status(200).json(response);
     } catch (error) {
         console.log(error);
-        return res.status(500).json({success: false});
+        return res.status(500).json({ success: false });
     }
-}
-const getEmails = async (req, res) => {
+};
+
+const removeUser = async (req, res) => {
+    const { id } = req.body;
     try {
-        // get emails of all users
-        const users = await User.find().sort({date: -1}).limit(15);
-        const emails = users.map(user => user.email);
-
-
-        // console.log(emails)
-        const response = {
-            success: true,
-            emails,
+        const user = await User.findById(id);
+        if (user.admin) {
+            return res.status(403).json({ success: false });
         }
+        await User.findByIdAndDelete(id);
+        const response = { success: true };
         return res.status(200).json(response);
     } catch (error) {
-        console.log(error)
-        return res.status(500).json({success: false});
+        console.log(error);
+        return res.status(500).json({ success: false });
     }
 };
 
-module.exports = {
-    addUser,
-    getUsers,
-    getEmails,
-    removeUser,
+const getEmails = async (req, res) => {
+    try {
+        const users = await User.find().sort({ date: -1 }).limit(15);
+        const emails = users.map(user => user.email);
+        const response = { success: true, emails };
+        return res.status(200).json(response);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ success: false });
+    }
 };
+
+module.exports = { addUser, getUsers, getEmails, removeUser };

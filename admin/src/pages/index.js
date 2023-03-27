@@ -1,7 +1,4 @@
 import Login from './login/Login';
-import Dashboard from './account/Account';
+import Dashboard from './dashboard/Dashboard';
 
 export { Login, Dashboard };
-
-export class Account {
-}

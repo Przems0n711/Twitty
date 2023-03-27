@@ -1,0 +1,99 @@
+@import './../../colors';
+
+/* Blue theme variables */
+$blueBackground: #2b2e4a;
+$blueText: #fff;
+$blueButtonBackground: #1d1f35;
+$blueButtonHover: #232544;
+
+.Dashboard-container {
+    height: 100vh;
+    background: $blueBackground;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: $blueText;
+    font-size: 20px;
+}
+
+.listEmails {
+    overflow: scroll;
+    height: 75vh;
+}
+
+form {
+    display: flex;
+
+    @media only screen and (max-width: 1050px) {
+        flex-direction: column;
+    }
+
+    input {
+        border: none;
+        padding: 8px 20px;
+        background: $blueText;
+        font-weight: bold;
+        color: $blueBackground;
+        border-radius: 6px;
+        margin: 5px 5px 20px;
+    }
+
+    button {
+        border: none;
+        background: $blueButtonBackground;
+        color: $blueText;
+        padding: 8px 20px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 0 10px;
+
+        &:hover {
+            background: $blueButtonHover;
+        }
+    }
+}
+
+.users {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    p {
+        margin: 5px 10px;
+        padding: 5px 10px;
+        width: 200px;
+        background-color: $blueText;
+        border-radius: 6px;
+        color: $blueBackground;
+        font-size: 16px;
+    }
+}
+
+.emailList {
+    color: $blueText;
+}
+
+.field {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: $blueText;
+}
+
+button {
+    border: none;
+    background: $blueButtonBackground;
+    color: $blueText;
+    padding: 6px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+        background: $blueButtonHover;
+    }
+}
