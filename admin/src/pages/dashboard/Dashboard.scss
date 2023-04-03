@@ -1,14 +1,14 @@
 @import './../../colors';
 
-/* Blue theme variables */
-$blueBackground: #2b2e4a;
-$blueText: #fff;
-$blueButtonBackground: #1d1f35;
-$blueButtonHover: #232544;
+/* Purple theme variables */
+$purpleBackground: #594F4F;
+$purpleText: #fff;
+$purpleButtonBackground: #443D3D;
+$purpleButtonHover: #7C7171;
 
 .Dashboard-container {
     height: 100vh;
-    background: $blueBackground;
+    background: $purpleBackground;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,7 +16,7 @@ $blueButtonHover: #232544;
 }
 
 h1 {
-    color: $blueText;
+    color: $purpleText;
     font-size: 20px;
 }
 
@@ -35,17 +35,17 @@ form {
     input {
         border: none;
         padding: 8px 20px;
-        background: $blueText;
+        background: $purpleText;
         font-weight: bold;
-        color: $blueBackground;
+        color: $purpleBackground;
         border-radius: 6px;
         margin: 5px 5px 20px;
     }
 
     button {
         border: none;
-        background: $blueButtonBackground;
-        color: $blueText;
+        background: $purpleButtonBackground;
+        color: $purpleText;
         padding: 8px 20px;
         border-radius: 6px;
         font-size: 16px;
@@ -53,7 +53,7 @@ form {
         margin: 0 10px;
 
         &:hover {
-            background: $blueButtonHover;
+            background: $purpleButtonHover;
         }
     }
 }
@@ -66,34 +66,34 @@ form {
         margin: 5px 10px;
         padding: 5px 10px;
         width: 200px;
-        background-color: $blueText;
+        background-color: $purpleText;
         border-radius: 6px;
-        color: $blueBackground;
+        color: $purpleBackground;
         font-size: 16px;
     }
 }
 
 .emailList {
-    color: $blueText;
+    color: $purpleText;
 }
 
 .field {
     display:flex;
     justify-content: center;
     align-items: center;
-    color: $blueText;
+    color: $purpleText;
 }
 
 button {
     border: none;
-    background: $blueButtonBackground;
-    color: $blueText;
+    background: $purpleButtonBackground;
+    color: $purpleText;
     padding: 6px 20px;
     border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
 
     &:hover {
-        background: $blueButtonHover;
+        background: $purpleButtonHover;
     }
 }

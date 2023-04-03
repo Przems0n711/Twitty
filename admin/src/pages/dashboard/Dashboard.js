@@ -75,7 +75,7 @@ const Dashboard = () => {
     return (
         <div className="Dashboard-container">
             <ToastContainer theme="dark" position="bottom-right" />
-            <h1>Welcome to Twitty :&gt;</h1>
+            <h1>Welcome to Twitty!</h1>
             <form>
                 <input ref={nameRef} type="text" placeholder="Name" />
                 <input ref={surnameRef} type="text" placeholder="Surname" />
