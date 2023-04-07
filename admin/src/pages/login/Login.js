@@ -26,7 +26,7 @@ const Login = () => {
 
             if (response.data.success) {
                 sessionStorage.setItem('token', response.data.token);
-                navigate('/dashboard');
+                navigate('/explore');
             } else {
                 notifyLoginError();
             }

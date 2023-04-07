@@ -1,4 +1,4 @@
 import Login from './login/Login';
-import Dashboard from './dashboard/Dashboard';
+import Explore from './explore/Explore';
 
-export { Login, Dashboard };
+export { Login, Explore };
