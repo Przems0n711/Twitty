@@ -3,7 +3,7 @@ const {createProxyMiddleware} = require('http-proxy-middleware');
 module.exports = function (app) {
     app.use(
         [
-            '/api/admin/login',
+            '/api/app/login',
             '/api/users',
             '/api/users/remove',
             '/api/token/verify',

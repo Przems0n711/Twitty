@@ -11,7 +11,7 @@ const login = async (req, res) => {
             return res.status(200).json({ success: false });
         }
 
-        if (req.url === '/api/admin/login' && data.password === user.password && user.admin) {
+        if (req.url === '/api/app/login' && data.password === user.password && user.admin) {
             // Admin Login
             const token = jwt.sign({ email: user.email, admin: user.admin }, 'admin4123');
 
