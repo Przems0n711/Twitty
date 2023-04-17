@@ -105,5 +105,4 @@ const TwitterHomePage = () => {
     );
 };
 
-let TwittyHomePage;
-export default TwittyHomePage;
+export default TwitterHomePage;
