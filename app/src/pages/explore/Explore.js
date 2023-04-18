@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { fetchPosts, createPost } from '../actions/postsActions';
+import { fetchPosts, createPost, addReaction } from '../actions/postsActions';
 import Post from '../components/Post';
 import TrendingTopics from '../components/TrendingTopics';
 import SearchBar from '../components/SearchBar';
@@ -14,6 +14,7 @@ const TwitterHomePage = () => {
     const [postText, setPostText] = useState('');
     const [postImage, setPostImage] = useState(null);
     const [searchText, setSearchText] = useState('');
+    const [reactionType, setReactionType] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -54,6 +55,10 @@ const TwitterHomePage = () => {
         setSearchText(event.target.value);
     };
 
+    const handleReactionClick = (postId, type) => {
+        dispatch(addReaction(postId, type));
+    };
+
     const filteredPosts = posts.filter((post) =>
         post.text.toLowerCase().includes(searchText.toLowerCase())
     );
@@ -75,7 +80,11 @@ const TwitterHomePage = () => {
                         <Loader />
                     ) : (
                         filteredPosts.map((post) => (
-                            <Post key={post.id} post={post} />
+                            <Post
+                                key={post.id}
+                                post={post}
+                                onReactionClick={handleReactionClick}
+                            />
                         ))
                     )}
                 </div>

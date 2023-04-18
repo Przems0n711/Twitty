@@ -76,3 +76,15 @@ export const createPost = (post) => {
             })
     }
 }
+
+const addReaction = (postId, reaction) => {
+    return {
+        type: 'ADD_REACTION',
+        payload: {
+            postId,
+            reaction
+        }
+    }
+};
+
+export default addReaction;
