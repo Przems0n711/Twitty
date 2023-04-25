@@ -1,0 +1,1 @@
+CREATE USER przemo WITH PASSWORD 'przemo';
