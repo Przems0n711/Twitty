@@ -18,11 +18,11 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color:  #9242bd;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-    animation: slide-up 1s ease;
+    animation: slide-up 0.5s ease;
 }
 
 @keyframes galaxy-background {
@@ -52,7 +52,7 @@ button {
     margin-top: 20px;
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: $light-blue-button;
+    background-color: #a229d6;
     color: white;
     border: none;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
@@ -60,7 +60,7 @@ button {
 }
 
 button:hover {
-    background-color: $light-blue-accent;
+    background-color: #be69e2;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
     transform: translateY(-5px);
 }

@@ -39,6 +39,7 @@ const Login = () => {
     return (
         <div className="Login-container">
             <ToastContainer theme="dark" position="bottom-right" />
+            <img src="./images/logoTwitty.png" alt="logo" />
             <h1>Twitty</h1>
             <form>
                 <input ref={emailRef} type="text" placeholder="Email" />
