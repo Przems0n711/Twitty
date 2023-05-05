@@ -51,3 +51,7 @@ Before contributing, please read the [code of conduct](CODE_OF_CONDUCT.md) and [
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Developers
+
+Przemek and Janek
