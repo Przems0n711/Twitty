@@ -9,7 +9,7 @@ const pool = new Pool({
     host: 'twitty_app',
     database: 'twitty_db',
     password: 'twitty12345',
-    port: 5432,
+    port: 5435,
 });
 
 pool.query('SELECT NOW()', (err, res) => {
