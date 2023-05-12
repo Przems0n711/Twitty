@@ -1,23 +1,45 @@
 version: '3'
 
+volumes:
+  db-data:
+    external: false
+  web-data:
+    external: false
+networks:
+  external:
+  internal:
 services:
   db:
-    image: postgres
-    environment:
-      POSTGRES_USER: twitty_admin
-      POSTGRES_PASSWORD: twitty12345
-      POSTGRES_DB: twitty_db
-    ports:
-      - "5435:5432"
+    build:
+      context: .
+      target: db
+    container_name: db
     volumes:
-      - pgdata:/var/lib/postgresql/data
-
-  app:
-    build: database
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: sqnote
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    networks:
+      - internal
     ports:
-      - "3000:3000"
+      - '3306:3306'
+  web:
+    build:
+      context: .
+      target: web
+    container_name: web
+    volumes:
+      - web-data:/var/www/html
+    ports:
+      - '8080:80'
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: user
+      MYSQL_PASS: pass
+    networks:
+      - external
+      - internal
     depends_on:
       - db
-
-volumes:
-  pgdata:

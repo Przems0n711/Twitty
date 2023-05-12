@@ -1,2 +1,7 @@
-.idea
+### Backend ###
 node_modules
+npm-debug.log
+.idea
+
+### Frontend ###
+

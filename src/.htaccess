@@ -1,0 +1,18 @@
+DirectorySlash Off
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+<FilesMatch "^\.">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+ErrorDocument 400 /resources/http_codes/400.php
+ErrorDocument 403 /resources/http_codes/404.php
+ErrorDocument 404 /resources/http_codes/404.php
+ErrorDocument 405 /resources/http_codes/405.php
+ErrorDocument 501 /resources/http_codes/501.php
+
+Options -Indexes
