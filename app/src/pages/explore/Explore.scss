@@ -1,0 +1,99 @@
+@import './../../colors';
+
+/* Purple theme variables */
+$purpleBackground: #594F4F;
+$purpleText: #fff;
+$purpleButtonBackground: #443D3D;
+$purpleButtonHover: #7C7171;
+
+.Dashboard-container {
+    height: 100vh;
+    background: $purpleBackground;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: $purpleText;
+    font-size: 20px;
+}
+
+.listEmails {
+    overflow: scroll;
+    height: 75vh;
+}
+
+form {
+    display: flex;
+
+    @media only screen and (max-width: 1050px) {
+        flex-direction: column;
+    }
+
+    input {
+        border: none;
+        padding: 8px 20px;
+        background: $purpleText;
+        font-weight: bold;
+        color: $purpleBackground;
+        border-radius: 6px;
+        margin: 5px 5px 20px;
+    }
+
+    button {
+        border: none;
+        background: $purpleButtonBackground;
+        color: $purpleText;
+        padding: 8px 20px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 0 10px;
+
+        &:hover {
+            background: $purpleButtonHover;
+        }
+    }
+}
+
+.users {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    p {
+        margin: 5px 10px;
+        padding: 5px 10px;
+        width: 200px;
+        background-color: $purpleText;
+        border-radius: 6px;
+        color: $purpleBackground;
+        font-size: 16px;
+    }
+}
+
+.emailList {
+    color: $purpleText;
+}
+
+.field {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: $purpleText;
+}
+
+button {
+    border: none;
+    background: $purpleButtonBackground;
+    color: $purpleText;
+    padding: 6px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+        background: $purpleButtonHover;
+    }
+}
