@@ -47,12 +47,6 @@ const Login = () => {
                 <input ref={passwordRef} type="password" placeholder="Password" />
                 <button onClick={loginHandler}>Login</button>
             </form>
-            <GoogleLogin
-                clientId="YOUR_CLIENT_ID_HERE"
-                onSuccess={(credentialResponse) => {
-                    console.log(credentialResponse);
-                }}
-            />
         </div>
     );
 };
