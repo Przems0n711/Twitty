@@ -88,6 +88,3 @@ const addReaction = (postId, reaction) => {
 };
 
 export default addReaction;
-
-export class addReaction {
-}
