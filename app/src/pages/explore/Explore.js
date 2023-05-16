@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { fetchPosts, createPost, addReaction } from '../actions/postsActions';
+import { useNavigate } from 'react-router-dom';
+import { fetchPosts, createPost } from '../actions/postsActions';
+import { addReaction } from '../actions/postsActions';
 import Post from '../components/Post';
 import TrendingTopics from '../components/TrendingTopics';
 import SearchBar from '../components/SearchBar';
 import UserCard from '../components/UserCard';
 import Modal from '../components/Modal';
 import Loader from '../components/Loader';
+import './Explore.scss';
 
 const TwitterHomePage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,7 +18,7 @@ const TwitterHomePage = () => {
     const [searchText, setSearchText] = useState('');
     const [reactionType, setReactionType] = useState('');
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const { posts, isLoading } = useSelector((state) => state.posts);
     const { currentUser } = useSelector((state) => state.auth);
