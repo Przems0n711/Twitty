@@ -4,29 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
-    const emailRef = useRef(null);
-    const passwordRef = useRef(null);
-    const navigate = useNavigate();
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const navigate = useNavigate();const notifyLoginError = () => toast.error('Invalid Credentials');
 
-    const notifyLoginError = () => toast.error('Invalid Credentials');
-
-    const loginHandler = async (e) => {
-        e.preventDefault();
-
-        const data = {
-            email: emailRef.current.value,
-            password: passwordRef.current.value,
-        };
+    const handleLogin = async (event) => {
+        event.preventDefault();
 
         try {
-            const response = await axios.post('/api/admin/login', data);
-            console.log(response.data);
+            const { data } = await axios.post('/api/admin/login', {
+                email: emailRef.current.value,
+                password: passwordRef.current.value,
+            });
 
-            if (response.data.success) {
-                sessionStorage.setItem('token', response.data.token);
+            if (data.success) {
+                sessionStorage.setItem('token', data.token);
                 navigate('/explore');
             } else {
                 notifyLoginError();
@@ -37,15 +31,25 @@ const Login = () => {
         }
     };
 
+    const handleLoginWithCredentials = () => {
+        const login = "your-login";
+        const password = "your-password";
+
+        emailRef.current.value = login;
+        passwordRef.current.value = password;
+
+        handleLogin(event);
+    };
+
     return (
         <div className="Login-container">
             <ToastContainer theme="dark" position="bottom-right" />
             <img src="./images/twitty2.jpg"/>
             <h1>Twitty</h1>
-            <form>
-                <input ref={emailRef} type="text" placeholder="Email" />
-                <input ref={passwordRef} type="password" placeholder="Password" />
-                <button onClick={loginHandler}>Login</button>
+            <form onSubmit={handleLogin}>
+                <input ref={emailRef} type="text" placeholder="Email" required />
+                <input ref={passwordRef} type="password" placeholder="Password" required />
+                <button type="submit">Login</button>
             </form>
         </div>
     );
