@@ -21,11 +21,11 @@ app.use(postsApi);
 app.use(messagesApi);
 app.use(tokensApi);
 
-const db = 'mongodb+srv://app:admintechni123@cluster0.zfvtf.mongodb.net/mailer?retryWrites=true&w=majority';
+const db = 'mongodb+srv://admin:admintechni123@cluster0.zfvtf.mongodb.net/mailer?retryWrites=true&w=majority';
 
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 mongoose.connection.on('connected', () => {
-  console.log('Connected with database');
+  console.log('Connected with your database');
 });
 
 app.listen(process.env.PORT || 8080, () => {
