@@ -6,9 +6,11 @@ $light-blue-button: #00838f;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background: radial-gradient(circle at 50% 50%, $purple-background, black);
     background-size: 800% 800%;
     animation: galaxy-background 10s ease infinite;
+    
 }
 
 @keyframes galaxy-background {
@@ -25,11 +27,14 @@ $light-blue-button: #00838f;
 
 .trending-topics,
 .tweet-suggestions {
-    background-color: $light-blue-accent;
+    background-color: #be69e2;
     color: white;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: 80px;
+    color-scheme: dark;
 
     h2 {
         margin-bottom: 10px;
@@ -86,7 +91,7 @@ button {
     margin-top: 20px;
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: $light-blue-button;
+    background-color: #be69e2;
     color: white;
     border: none;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
@@ -106,10 +111,44 @@ input {
     margin-bottom: 10px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
-    background-color: $light-blue-button;
+    background-color: #be69e2;
     font-family: Arial;
 
     &::placeholder {
         color: black;
     }
 }
+
+textarea {
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    resize: none;
+  }
+  
+  textarea::placeholder {
+    color: #888;
+  }
+  
+
+.postInput {
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+  margin-bottom: 20px;
+}
+
+  
+  .post-input::placeholder {
+    color: #888;
+  }
+  

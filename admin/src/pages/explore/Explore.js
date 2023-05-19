@@ -37,21 +37,26 @@ container.appendChild(tweetSuggestions);
 
 const postInput = document.createElement('textarea');
 postInput.placeholder = "What's happening?";
+postInput.classList.add('postInput');
 container.appendChild(postInput);
 
 const imageInput = document.createElement('input');
 imageInput.type = 'file';
 imageInput.accept = 'image/*';
+imageInput.classList.add('imageInput');
 container.appendChild(imageInput);
 
 const topicInput = document.createElement('input');
 topicInput.type = 'text';
 topicInput.placeholder = 'Add a topic';
+topicInput.classList.add('topicInput');
 container.appendChild(topicInput);
 
 const postButton = document.createElement('button');
 postButton.textContent = 'Post';
+postButton.classList.add('postButton');
 container.appendChild(postButton);
+
 
 const postList = document.createElement('ul');
 container.appendChild(postList);
