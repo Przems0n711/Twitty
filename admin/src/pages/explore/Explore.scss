@@ -1,97 +1,115 @@
-/* Purple theme variables */
-$purpleBackground: #594F4F;
-$purpleText: #fff;
-$purpleButtonBackground: #443D3D;
-$purpleButtonHover: #7C7171;
+$purple-background: #7b1fa2;
+$light-blue-accent: #00acc1;
+$light-blue-button: #00838f;
 
-.Dashboard-container {
-    height: 100vh;
-    background: $purpleBackground;
+.container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    background: radial-gradient(circle at 50% 50%, $purple-background, black);
+    background-size: 800% 800%;
+    animation: galaxy-background 10s ease infinite;
 }
 
-h1 {
-    color: $purpleText;
-    font-size: 20px;
+@keyframes galaxy-background {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-.listEmails {
-    overflow: scroll;
-    height: 75vh;
-}
+.trending-topics,
+.tweet-suggestions {
+    background-color: $light-blue-accent;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
 
-form {
-    display: flex;
-
-    @media only screen and (max-width: 1050px) {
-        flex-direction: column;
+    h2 {
+        margin-bottom: 10px;
     }
 
-    input {
-        border: none;
-        padding: 8px 20px;
-        background: $purpleText;
-        font-weight: bold;
-        color: $purpleBackground;
-        border-radius: 6px;
-        margin: 5px 5px 20px;
-    }
+    ul {
+        list-style-type: none;
+        padding: 0;
 
-    button {
-        border: none;
-        background: $purpleButtonBackground;
-        color: $purpleText;
-        padding: 8px 20px;
-        border-radius: 6px;
-        font-size: 16px;
-        cursor: pointer;
-        margin: 0 10px;
-
-        &:hover {
-            background: $purpleButtonHover;
+        li {
+            margin-bottom: 5px;
         }
     }
 }
 
-.users {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    p {
-        margin: 5px 10px;
-        padding: 5px 10px;
-        width: 200px;
-        background-color: $purpleText;
-        border-radius: 6px;
-        color: $purpleBackground;
-        font-size: 16px;
+.post-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: $light-blue-accent;
+    border-radius: 5px;
+    color: white;
+
+    .post {
+        display: flex;
+        flex-direction: column;
+
+        .content {
+            margin-bottom: 10px;
+        }
+
+        .image {
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .topic {
+            font-weight: bold;
+        }
     }
 }
 
-.emailList {
-    color: $purpleText;
-}
+.dark-mode {
+    background-color: black;
+    color: white;
 
-.field {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    color: $purpleText;
+    .trending-topics,
+    .tweet-suggestions,
+    .post-item {
+        background-color: $light-blue-button;
+    }
 }
 
 button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: $light-blue-button;
+    color: white;
     border: none;
-    background: $purpleButtonBackground;
-    color: $purpleText;
-    padding: 6px 20px;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 
     &:hover {
-        background: $purpleButtonHover;
+        background-color: darken($light-blue-button, 10%);
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        transform: translateY(-5px);
+    }
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    background-color: $light-blue-button;
+    font-family: Arial;
+
+    &::placeholder {
+        color: black;
     }
 }

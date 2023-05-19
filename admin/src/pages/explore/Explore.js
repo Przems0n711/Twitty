@@ -1,119 +1,126 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { fetchPosts, createPost } from '../actions/postsActions';
-import { addReaction } from '../actions/postsActions';
-import Post from '../components/Post';
-import TrendingTopics from '../components/TrendingTopics';
-import SearchBar from '../components/SearchBar';
-import UserCard from '../components/UserCard';
-import Modal from '../components/Modal';
-import Loader from '../components/Loader';
-import './Explore.scss';
+import './Explore.scss'
+// HTML elements
 
-const TwitterHomePage = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [postText, setPostText] = useState('');
-    const [postImage, setPostImage] = useState(null);
-    const [searchText, setSearchText] = useState('');
-    const [reactionType, setReactionType] = useState('');
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+const TwitterHomePage = () => {}
 
-    const { posts, isLoading } = useSelector((state) => state.posts);
-    const { currentUser } = useSelector((state) => state.auth);
+const container = document.createElement('div');
+container.classList.add('container');
+document.body.appendChild(container);
 
-    useEffect(() => {
-        dispatch(fetchPosts());
-    }, [dispatch]);
+const header = document.createElement('h1');
+header.textContent = 'Explore';
+container.appendChild(header);
 
-    const handleAddPostOrImage = () => {
-        setIsModalOpen(true);
-    };
+const trendingTopics = document.createElement('div');
+trendingTopics.classList.add('trending-topics');
+trendingTopics.innerHTML = `
+  <h2>Trending Topics</h2>
+  <ul>
+    <li>#JavaScript</li>
+    <li>#WebDevelopment</li>
+    <li>#ArtificialIntelligence</li>
+  </ul>
+`;
+container.appendChild(trendingTopics);
 
-    const handleModalClose = () => {
-        setIsModalOpen(false);
-        setPostText('');
-        setPostImage(null);
-    };
+const tweetSuggestions = document.createElement('div');
+tweetSuggestions.classList.add('tweet-suggestions');
+tweetSuggestions.innerHTML = `
+  <h2>Who to Follow</h2>
+  <ul>
+    <li>@OpenAI</li>
+    <li>@TechCrunch</li>
+    <li>@elonmusk</li>
+  </ul>
+`;
+container.appendChild(tweetSuggestions);
 
-    const handlePostTextChange = (event) => {
-        setPostText(event.target.value);
-    };
+const postInput = document.createElement('textarea');
+postInput.placeholder = "What's happening?";
+container.appendChild(postInput);
 
-    const handlePostImageChange = (event) => {
-        setPostImage(event.target.files[0]);
-    };
+const imageInput = document.createElement('input');
+imageInput.type = 'file';
+imageInput.accept = 'image/*';
+container.appendChild(imageInput);
 
-    const handlePostSubmit = (event) => {
-        event.preventDefault();
-        dispatch(createPost({ text: postText, image: postImage }));
-        setIsModalOpen(false);
-        setPostText('');
-        setPostImage(null);
-    };
+const topicInput = document.createElement('input');
+topicInput.type = 'text';
+topicInput.placeholder = 'Add a topic';
+container.appendChild(topicInput);
 
-    const handleSearchChange = (event) => {
-        setSearchText(event.target.value);
-    };
+const postButton = document.createElement('button');
+postButton.textContent = 'Post';
+container.appendChild(postButton);
 
-    const handleReactionClick = (postId, type) => {
-        dispatch(addReaction(postId, type));
-    };
+const postList = document.createElement('ul');
+container.appendChild(postList);
 
-    const filteredPosts = posts.filter((post) =>
-        post.text.toLowerCase().includes(searchText.toLowerCase())
-    );
+// Event listeners
+postButton.addEventListener('click', createPost);
 
-    return (
-        <div className="container">
-            <header>
-                <h1>Twitty</h1>
-                <button onClick={handleAddPostOrImage}>Add Post or Image</button>
-                <SearchBar value={searchText} onChange={handleSearchChange} />
-            </header>
-            <main>
-                <div className="left-column">
-                    <UserCard user={currentUser} />
-                    <TrendingTopics />
-                </div>
-                <div className="right-column">
-                    {isLoading ? (
-                        <Loader />
-                    ) : (
-                        filteredPosts.map((post) => (
-                            <Post
-                                key={post.id}
-                                post={post}
-                                onReactionClick={handleReactionClick}
-                            />
-                        ))
-                    )}
-                </div>
-            </main>
-            {isModalOpen && (
-                <Modal onClose={handleModalClose}>
-                    <h2>Add Post or Image</h2>
-                    <form onSubmit={handlePostSubmit}>
-                        <label htmlFor="post-text">Post text:</label>
-                        <textarea
-                            id="post-text"
-                            value={postText}
-                            onChange={handlePostTextChange}
-                        />
-                        <label htmlFor="post-image">Post image:</label>
-                        <input
-                            type="file"
-                            id="post-image"
-                            accept="image/*"
-                            onChange={handlePostImageChange}
-                        />
-                        <button type="submit">Post</button>
-                    </form>
-                </Modal>
-            )}
-        </div>
-    );
-};
+// Function to create a new post
+function createPost() {
+    const postContent = postInput.value.trim();
+    const selectedImage = imageInput.files[0];
+    const postTopic = topicInput.value.trim();
+
+    if (postContent !== '' || selectedImage || postTopic !== '') {
+        const listItem = document.createElement('li');
+        listItem.classList.add('post-item');
+
+        const post = document.createElement('div');
+        post.classList.add('post');
+
+        if (postContent !== '') {
+            const content = document.createElement('p');
+            content.classList.add('content');
+            content.textContent = postContent;
+            post.appendChild(content);
+        }
+
+        if (selectedImage) {
+            const image = document.createElement('img');
+            image.classList.add('image');
+            image.src = URL.createObjectURL(selectedImage);
+            post.appendChild(image);
+        }
+
+        if (postTopic !== '') {
+            const topic = document.createElement('span');
+            topic.classList.add('topic');
+            topic.textContent = `#${postTopic}`;
+            post.appendChild(topic);
+        }
+
+        listItem.appendChild(post);
+        postList.prepend(listItem);
+
+        postInput.value = '';
+        imageInput.value = '';
+        topicInput.value = '';
+    }
+}
+
+// Function to toggle dark mode
+function toggleDarkMode() {
+    container.classList.toggle('dark-mode');
+}
+
+// Function to clear all posts
+function clearPosts() {
+    postList.innerHTML = '';
+}
+
+// Attach event listeners to additional buttons
+const darkModeButton = document.createElement('button');
+darkModeButton.textContent = 'Toggle Dark Mode';
+darkModeButton.addEventListener('click', toggleDarkMode);
+container.appendChild(darkModeButton);
+
+const clearButton = document.createElement('button');
+clearButton.textContent = 'Clear Posts';
+clearButton.addEventListener('click', clearPosts);
+container.appendChild(clearButton);
 
 export default TwitterHomePage;
