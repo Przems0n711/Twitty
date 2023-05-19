@@ -1,7 +1,4 @@
-import './Explore.scss'
-// HTML elements
-
-const TwitterHomePage = () => {}
+import './Explore.scss';
 
 const container = document.createElement('div');
 container.classList.add('container');
@@ -57,14 +54,17 @@ postButton.textContent = 'Post';
 postButton.classList.add('postButton');
 container.appendChild(postButton);
 
-
 const postList = document.createElement('ul');
 container.appendChild(postList);
+
+const storedPosts = localStorage.getItem('posts');
+if (storedPosts) {
+    postList.innerHTML = storedPosts;
+}
 
 // Event listeners
 postButton.addEventListener('click', createPost);
 
-// Function to create a new post
 function createPost() {
     const postContent = postInput.value.trim();
     const selectedImage = imageInput.files[0];
@@ -104,20 +104,21 @@ function createPost() {
         postInput.value = '';
         imageInput.value = '';
         topicInput.value = '';
+
+        // Store updated posts in local storage
+        localStorage.setItem('posts', postList.innerHTML);
     }
 }
 
-// Function to toggle dark mode
 function toggleDarkMode() {
     container.classList.toggle('dark-mode');
 }
 
-// Function to clear all posts
 function clearPosts() {
     postList.innerHTML = '';
+    localStorage.removeItem('posts');
 }
 
-// Attach event listeners to additional buttons
 const darkModeButton = document.createElement('button');
 darkModeButton.textContent = 'Toggle Dark Mode';
 darkModeButton.addEventListener('click', toggleDarkMode);
@@ -128,4 +129,4 @@ clearButton.textContent = 'Clear Posts';
 clearButton.addEventListener('click', clearPosts);
 container.appendChild(clearButton);
 
-export default TwitterHomePage;
+export default container;
