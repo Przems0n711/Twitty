@@ -87,7 +87,10 @@ function createPost() {
             const image = document.createElement('img');
             image.classList.add('image');
             image.src = URL.createObjectURL(selectedImage);
+            image.style.maxWidth = '400px';
+            image.style.maxHeight = '400px';
             post.appendChild(image);
+            
         }
 
         if (postTopic !== '') {
