@@ -62,7 +62,6 @@ if (storedPosts) {
     postList.innerHTML = storedPosts;
 }
 
-// Event listeners
 postButton.addEventListener('click', createPost);
 
 function createPost() {
@@ -98,17 +97,76 @@ function createPost() {
             post.appendChild(topic);
         }
 
+        const reactions = document.createElement('div');
+        reactions.classList.add('reactions');
+
+        const commentButton = document.createElement('button');
+        commentButton.textContent = 'Comment';
+        commentButton.classList.add('commentButton');
+        reactions.appendChild(commentButton);
+
+        const likeButton = document.createElement('button');
+        likeButton.textContent = 'Like';
+        likeButton.classList.add('likeButton');
+        reactions.appendChild(likeButton);
+
         listItem.appendChild(post);
+        listItem.appendChild(reactions);
+
+        const commentInput = document.createElement('input');
+        commentInput.type = 'text';
+        commentInput.placeholder = 'Add a comment';
+        commentInput.classList.add('comment-input');
+        listItem.appendChild(commentInput);
+
+        const commentsContainer = document.createElement('div');
+        commentsContainer.classList.add('comments-container');
+        listItem.appendChild(commentsContainer);
+
         postList.prepend(listItem);
 
         postInput.value = '';
         imageInput.value = '';
         topicInput.value = '';
 
-        // Store updated posts in local storage
         localStorage.setItem('posts', postList.innerHTML);
     }
 }
+
+function createComment(commentInput, commentsContainer) {
+    const commentContent = commentInput.value.trim();
+
+    if (commentContent !== '') {
+        const commentItem = document.createElement('div');
+        commentItem.classList.add('comment-item');
+
+        const commentContentElem = document.createElement('p');
+        commentContentElem.classList.add('comment-content');
+        commentContentElem.textContent = commentContent;
+        commentItem.appendChild(commentContentElem);
+
+        commentsContainer.appendChild(commentItem);
+
+        commentInput.value = '';
+    }
+}
+
+function likePost() {
+    // Like post logic...
+}
+
+postList.addEventListener('click', function(event) {
+    const target = event.target;
+
+    if (target.classList.contains('commentButton')) {
+        const listItem = target.closest('.post-item');
+        const commentInput = listItem.querySelector('.comment-input');
+        const commentsContainer = listItem.querySelector('.comments-container');
+        createComment(commentInput, commentsContainer);
+    } else if (target.classList.contains('likeButton')) {
+        likePost();
+    }
+});
 
 function toggleDarkMode() {
     container.classList.toggle('dark-mode');
