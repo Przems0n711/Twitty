@@ -28,6 +28,8 @@ $light-blue-button: #00838f;
 .trending-topics,
 .tweet-suggestions {
     background-color: #be69e2;
+    display: flex;
+    flex-direction: column;
     color: white;
     padding: 10px;
     border-radius: 5px;
@@ -53,7 +55,7 @@ $light-blue-button: #00838f;
 .post-item {
     margin-bottom: 20px;
     padding: 10px;
-    background-color: $light-blue-accent;
+    background-color: #be69e2;
     border-radius: 5px;
     color: white;
 
