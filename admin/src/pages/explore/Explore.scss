@@ -10,7 +10,7 @@ $light-blue-button: #00838f;
     background: radial-gradient(circle at 50% 50%, $purple-background, black);
     background-size: 800% 800%;
     animation: galaxy-background 10s ease infinite;
-
+    
 }
 
 @keyframes galaxy-background {
@@ -25,8 +25,35 @@ $light-blue-button: #00838f;
     }
 }
 
-.trending-topics,
 .tweet-suggestions {
+    display: flex;
+    flex-direction: column;
+    background-color: #be69e2;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: 80px;
+    color-scheme: dark;
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+
+        li {
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.trending-topics {
+    display: flex;
+    flex-direction: column;
     background-color: #be69e2;
     color: white;
     padding: 10px;
@@ -53,7 +80,7 @@ $light-blue-button: #00838f;
 .post-item {
     margin-bottom: 20px;
     padding: 10px;
-    background-color: $light-blue-accent;
+    background-color: #7b1fa2;
     border-radius: 5px;
     color: white;
 
@@ -131,11 +158,11 @@ textarea {
     flex-direction: column;
     resize: none;
   }
-
+  
   textarea::placeholder {
     color: #888;
   }
-
+  
 
 .postInput {
   height: auto;
@@ -147,7 +174,7 @@ textarea {
   margin-bottom: 20px;
 }
 
-
+  
   .post-input::placeholder {
     color: #888;
   }
